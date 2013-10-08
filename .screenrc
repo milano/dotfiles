@@ -1,0 +1,30 @@
+autodetach on
+bell_msg "^G"
+defkanji utf-8
+defencoding utf-8
+encoding utf-8 utf-8
+defscrollback 10000
+escape ^]v
+startup_message off
+vbell off
+altscreen on
+
+termcapinfo xterm* ti@:te@
+#termcapinfo xterm* 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+
+bind x
+bind ^x
+bind h prev
+bind l next
+bind ^] next
+bind w windowlist
+bind -c REGION 2 split
+bind -c REGION 1 only
+bind -c REGION 0 remove
+bind -c REGION o focus
+bind -c REGION \^ resize
+bind x command -c REGION
+
+#caption always "%{= gk} %-w%{=bu dr}%n %t%{-}%+w %= %{=b wm}[%Y/%m/%d %02c]"
+#shelltitle "$ |bash"
+hardstatus alwayslastline "%{= gk} %-w%{=bu dr}%n %t%{-}%+w"
