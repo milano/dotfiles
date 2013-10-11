@@ -17,3 +17,7 @@ alias emacs='/usr/local/bin/emacs -nw'
 alias e='/usr/local/bin/emacs -nw'
 alias j='jobs -l'
 alias g='git'
+alias v='vim'
+
+export GIT_EDITOR="vim"
+
