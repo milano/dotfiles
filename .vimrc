@@ -28,7 +28,7 @@ syntax on
 set hidden
 
 " コマンドライン補完を便利に
-set wildmenu
+set wildmenu wildmode=list:longest,full
 
 " タイプ途中のコマンドを画面最下行に表示
 set showcmd
@@ -89,8 +89,8 @@ set number
 " キーコードはすぐにタイムアウト。マッピングはタイムアウトしない
 set notimeout ttimeout ttimeoutlen=200
 
-" <F11>キーで'paste'と'nopaste'を切り替える
-set pastetoggle=<F11>
+" <F4>キーで'paste'と'nopaste'を切り替える
+set pastetoggle=<F4>
 
 "------------------------------------------------------------
 " Indentation options
@@ -124,6 +124,23 @@ nnoremap <C-L> :nohl<CR><C-L>
 " ファイルのフォルダのパスが展開されるようにする
 cnoremap %% <C-R>=expand('%:p:h').'/'<cr>
 
+" F2, F3 でバッファの切替
+map <F2> <esc>:bp<cr>
+map <F3> <esc>:bn<cr>
+
+noremap  <C-g> <esc>
+inoremap <C-g> <esc>
+cnoremap <C-g> <esc>
+
+noremap <C-l> :Bufferlist<CR>
+
+" インサートモードでもhjklで移動
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+
+
 "------------------------------------------------------------
 " Plugins
 
@@ -138,9 +155,12 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vimfiler'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'
+NeoBundle 'bling/vim-airline'
 
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'croaker/mustang-vim'
@@ -165,6 +185,9 @@ set cursorline
 " カラースキーマ設定
 colorscheme mrkn256
 
+"------------------------------------------------------------
+" autocmd
+
 " アクティブウィンドウに限りカーソル行(列)を強調する
 augroup vimrc_set_cursorline_only_active_window
   autocmd!
@@ -180,4 +203,12 @@ augroup vimrc_change_cursorline_color
   " インサートモードを抜けた時にカーソル行の色を黒に近いダークグレーにする
   autocmd InsertLeave * highlight CursorLine ctermbg=236 guibg=#303030 | highlight CursorColumn ctermbg=236 guibg=#303030
 augroup END
+
+" 全角スペースを視覚化
+highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=#666666
+autocmd BufNewFile,BufRead * match ZenkakuSpace /　/
+
+" grepは自動的にquickfix-windowを開く
+autocmd QuickFixCmdPost *grep* cwindow
+
 "-----------------------------------------------------------
