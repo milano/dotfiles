@@ -6,7 +6,7 @@
 "              on this file is still a good idea.
 
 "------------------------------------------------------------
-" Features {{{1
+" Features
 "
 " These options and commands enable some very useful features in Vim, that
 " no user should have to live without.
@@ -16,19 +16,13 @@
 " Vi互換モードをオフ（Vimの拡張機能を有効）
 set nocompatible
 
-" Attempt to determine the type of a file based on its name and possibly its
-" contents.  Use this to allow intelligent auto-indenting for each filetype,
-" and for plugins that are filetype specific.
-" ファイル名と内容によってファイルタイプを判別し、ファイルタイププラグインを有効にする
-filetype indent plugin on
-
 " Enable syntax highlighting
 " 色づけをオン
 syntax on
 
 
 "------------------------------------------------------------
-" Must have options {{{1
+" Must have options
 
 " バッファを保存しなくても他のバッファを表示できるようにする
 set hidden
@@ -42,12 +36,18 @@ set showcmd
 " 検索語を強調表示（<C-L>を押すと現在の強調表示を解除する）
 set hlsearch
 
+" インクリメンタルサーチ
+set incsearch
+
+" コマンドラインの履歴を増やす
+set history=1000
+
 " 歴史的にモードラインはセキュリティ上の脆弱性になっていたので、
 " オフにして代わりに上記のsecuremodelinesスクリプトを使うとよい。
 " set nomodeline
 
 "------------------------------------------------------------
-" Usability options {{{1
+" Usability options
 
 " 検索時に大文字・小文字を区別しない。ただし、検索後に大文字小文字が
 " 混在しているときは区別する
@@ -57,9 +57,6 @@ set smartcase
 " オートインデント、改行、インサートモード開始直後にバックスペースキーで
 " 削除できるようにする。
 set backspace=indent,eol,start
-
-" オートインデント
-set autoindent
 
 " 移動コマンドを使ったとき、行頭に移動しない
 set nostartofline
@@ -96,13 +93,18 @@ set notimeout ttimeout ttimeoutlen=200
 set pastetoggle=<F11>
 
 "------------------------------------------------------------
-" Indentation options {{{1
+" Indentation options
 
 " タブ文字の代わりにスペース2個を使う場合の設定。
 " この場合、'tabstop'はデフォルトの8から変えない。
 set shiftwidth=2
 set softtabstop=2
 set expandtab
+set tabstop=4
+
+" オートインデント
+set autoindent
+set smartindent
 
 " インデントにハードタブを使う場合の設定。
 " タブ文字を2文字分の幅で表示する。
@@ -110,7 +112,7 @@ set expandtab
 "set tabstop=2
 
 "------------------------------------------------------------
-" Mappings {{{1
+" Mappings
 
 " Yの動作をDやCと同じにする
 map Y y$
@@ -118,4 +120,64 @@ map Y y$
 " <C-L>で検索後の強調表示を解除する
 nnoremap <C-L> :nohl<CR><C-L>
 
+" コマンドラインモードで %% を入力すると現在編集中の
+" ファイルのフォルダのパスが展開されるようにする
+cnoremap %% <C-R>=expand('%:p:h').'/'<cr>
+
+"------------------------------------------------------------
+" Plugins
+
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  call neobundle#rc(expand('~/.vim/bundle/'))
+endif
+
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'thinca/vim-ref'
+
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'croaker/mustang-vim'
+NeoBundle 'jeffreyiacono/vim-colors-wombat'
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'vim-scripts/Lucius'
+NeoBundle 'vim-scripts/Zenburn'
+NeoBundle 'mrkn/mrkn256.vim'
+NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'therubymug/vim-pyte'
+NeoBundle 'tomasr/molokai'
+
+" ファイル名と内容によってファイルタイプを判別し、ファイルタイププラグインを有効にする
+filetype plugin indent on
+
+"------------------------------------------------------------
+" Color
+
+" カーソルに下線を引く
+set cursorline
+
+" カラースキーマ設定
+colorscheme mrkn256
+
+" アクティブウィンドウに限りカーソル行(列)を強調する
+augroup vimrc_set_cursorline_only_active_window
+  autocmd!
+  autocmd VimEnter,BufWinEnter,WinEnter * setlocal cursorline
+    autocmd WinLeave * setlocal nocursorline
+augroup END
+
+" インサートモードに入った時にカーソル行の色を変更する
+augroup vimrc_change_cursorline_color
+  autocmd!
+  " インサートモードに入った時にカーソル行の色をブルーグリーンにする
+  autocmd InsertEnter * highlight CursorLine ctermbg=24 guibg=#005f87 | highlight CursorColumn ctermbg=24 guibg=#005f87
+  " インサートモードを抜けた時にカーソル行の色を黒に近いダークグレーにする
+  autocmd InsertLeave * highlight CursorLine ctermbg=236 guibg=#303030 | highlight CursorColumn ctermbg=236 guibg=#303030
+augroup END
 "-----------------------------------------------------------
