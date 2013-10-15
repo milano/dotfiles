@@ -97,8 +97,8 @@ set pastetoggle=<F4>
 
 " タブ文字の代わりにスペース2個を使う場合の設定。
 " この場合、'tabstop'はデフォルトの8から変えない。
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 set tabstop=4
 
@@ -135,10 +135,10 @@ cnoremap <C-g> <esc>
 noremap <C-l> :Bufferlist<CR>
 
 " インサートモードでもhjklで移動
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
+"inoremap <C-j> <Down>
+"inoremap <C-k> <Up>
+"inoremap <C-h> <Left>
+"inoremap <C-l> <Right>
 
 
 "------------------------------------------------------------
@@ -161,6 +161,7 @@ NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'bling/vim-airline'
+NeoBundle 'scrooloose/syntastic'
 
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'croaker/mustang-vim'
@@ -184,6 +185,39 @@ set cursorline
 
 " カラースキーマ設定
 colorscheme mrkn256
+
+"------------------------------------------------------------
+" neocomplcache
+
+autocmd BufRead *.php\|*.ctp\|*.tpl :set dictionary=~/.vim/dictionaries/php.dict filetype=php
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_smart_case = 1
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_manual_completion_start_length = 0
+let g:neocomplcache_caching_percent_in_statusline = 1
+let g:neocomplcache_enable_skip_completion = 1
+let g:neocomplcache_skip_input_time = '0.5'
+
+highlight Pmenu ctermbg=196
+highlight PmenuSel ctermbg=1
+highlight PMenuSbar ctermbg=4
+
+"------------------------------------------------------------
+" syntastic
+" http://c-brains.jp/blog/wsg/13/02/27-102230.php
+
+let g:syntastic_check_on_open = 1
+let g:syntastic_enable_signs = 1
+let g:syntastic_echo_current_error = 1
+let g:syntastic_auto_loc_list = 2
+let g:syntastic_enable_highlighting = 1
+" なんでか分からないけど php コマンドのオプションを上書かないと動かなかった
+let g:syntastic_php_php_args = '-l'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 "------------------------------------------------------------
 " autocmd
