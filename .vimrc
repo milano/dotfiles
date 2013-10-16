@@ -132,7 +132,7 @@ noremap  <C-g> <esc>
 inoremap <C-g> <esc>
 cnoremap <C-g> <esc>
 
-noremap <C-l> :Bufferlist<CR>
+noremap <C-l> :BufExplorer<CR>
 
 " インサートモードでもhjklで移動
 "inoremap <C-j> <Down>
