@@ -32,4 +32,5 @@ alias g='git'
 alias v='vim'
 
 export GIT_EDITOR="vim"
-
+export HGEDITOR="vim"
+export HGENCODING=UTF-8
