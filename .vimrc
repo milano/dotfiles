@@ -164,7 +164,6 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'ujihisa/unite-colorscheme'
-NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'bling/vim-airline'
@@ -194,13 +193,21 @@ set cursorline
 colorscheme mrkn256
 
 "------------------------------------------------------------
+" airline
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
+
+"------------------------------------------------------------
 " neocomplcache
+" http://vim-users.jp/2010/10/hack177/
 
 autocmd BufRead *.php\|*.ctp\|*.tpl :set dictionary=~/.vim/dictionary/php.dict filetype=php
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_smart_case = 1
+let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_manual_completion_start_length = 0
 let g:neocomplcache_caching_percent_in_statusline = 1
@@ -211,6 +218,18 @@ highlight Pmenu ctermbg=196
 highlight PmenuSel ctermbg=1
 highlight PMenuSbar ctermbg=4
 
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neocomplcache_snippets_expand)
+smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y> neocomplcache#close_popup()
+inoremap <expr><C-e> neocomplcache#cancel_popup()
+
 "------------------------------------------------------------
 " syntastic
 " http://c-brains.jp/blog/wsg/13/02/27-102230.php
@@ -220,8 +239,7 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_echo_current_error = 1
 let g:syntastic_auto_loc_list = 2
 let g:syntastic_enable_highlighting = 1
-" なんでか分からないけど php コマンドのオプションを上書かないと動かなかった
-let g:syntastic_php_php_args = '-l'
+let g:syntastic_php_phpcs_args = '--report=csv --standard=.vim/phpcs-rule.xml'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
