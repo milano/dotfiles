@@ -30,6 +30,7 @@ alias e='/usr/local/bin/emacs -nw'
 alias j='jobs -l'
 alias g='git'
 alias v='vim'
+alias caketestall='./app/Console/cake test app AllTests'
 
 export GIT_EDITOR="vim"
 export HGEDITOR="vim"

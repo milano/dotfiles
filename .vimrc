@@ -163,6 +163,7 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/vimproc'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'
@@ -195,21 +196,43 @@ colorscheme mrkn256
 "------------------------------------------------------------
 " airline
 
-let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#enabled = 1
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '◀'
 
 "------------------------------------------------------------
 " neocomplcache
+" http://www.karakaram.com/neocomplcache
+
+"補完ウィンドウの設定
+set completeopt=menuone
+
+"起動時に有効
+let g:neocomplcache_enable_at_startup = 1
+"ポップアップメニューで表示される候補の数。初期値は100
+let g:neocomplcache_max_list = 20
+"自動補完を行う入力数を設定。初期値は2
+let g:neocomplcache_auto_completion_start_length = 2
+"手動補完時に補完を行う入力数を制御。値を小さくすると文字の削除時に重くなる
+let g:neocomplcache_manual_completion_start_length = 3
+"バッファや辞書ファイル中で、補完の対象となるキーワードの最小長さ。初期値は4。
+let g:neocomplcache_min_keyword_length = 4
+"シンタックスファイル中で、補完の対象となるキーワードの最小長さ。初期値は4。
+let g:neocomplcache_min_syntax_length = 3
+"1:補完候補検索時に大文字・小文字を無視する
+let g:neocomplcache_enable_ignore_case = 1
+"入力に大文字が入力されている場合、大文字小文字の区別をする
+let g:neocomplcache_enable_smart_case = 1
+"大文字小文字を区切りとしたあいまい検索を行うかどうか。
+"DTと入力するとD*T*と解釈され、DateTime等にマッチする。
+let g:neocomplcache_enable_camel_case_completion = 1
+"アンダーバーを区切りとしたあいまい検索を行うかどうか。
+"m_sと入力するとm*_sと解釈され、mb_substr等にマッチする。
+let g:neocomplcache_enable_underbar_completion = 1
+
 " http://vim-users.jp/2010/10/hack177/
 
 autocmd BufRead *.php\|*.ctp\|*.tpl :set dictionary=~/.vim/dictionary/php.dict filetype=php
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_manual_completion_start_length = 0
 let g:neocomplcache_caching_percent_in_statusline = 1
 let g:neocomplcache_enable_skip_completion = 1
 let g:neocomplcache_skip_input_time = '0.5'
@@ -222,13 +245,25 @@ highlight PMenuSbar ctermbg=4
 imap <C-k>     <Plug>(neocomplcache_snippets_expand)
 smap <C-k>     <Plug>(neocomplcache_snippets_expand)
 inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
+"tabで補完候補の選択を行う
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<S-TAB>"
+"C-h, BSで補完ウィンドウを確実に閉じる
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>  neocomplcache#smart_close_popup()."\<C-h>"
+"C-yで補完候補の確定
 inoremap <expr><C-y> neocomplcache#close_popup()
-inoremap <expr><C-e> neocomplcache#cancel_popup()
+"C-eで補完のキャンセルし、ウィンドウを閉じる。ポップアップが開いていないときはEndキー
+inoremap <expr><C-e> pumvisible() ? neocomplcache#cancel_popup() : "\<End>"
+"改行で補完ウィンドウを閉じる
+inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
+"vim標準のキーワード補完を置き換える
+"inoremap <expr><C-n> neocomplcache#manual_keyword_complete()
+"C-pで上キー
+inoremap <C-p> <Up>
+"補完候補の共通文字列を補完する(シェル補完のような動作)
+inoremap <expr><C-l> neocomplcache#complete_common_string()
 
 "------------------------------------------------------------
 " syntastic
@@ -239,7 +274,7 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_echo_current_error = 1
 let g:syntastic_auto_loc_list = 2
 let g:syntastic_enable_highlighting = 1
-let g:syntastic_php_phpcs_args = '--report=csv --standard=.vim/phpcs-rule.xml'
+let g:syntastic_php_phpcs_args = '--report=csv --standard=/Users/tsukui/.vim/phpcs-rule.xml'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
