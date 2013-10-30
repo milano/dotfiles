@@ -9,6 +9,8 @@ startup_message off
 vbell off
 altscreen on
 
+defbce on
+term xterm-256color
 termcapinfo xterm* ti@:te@
 #termcapinfo xterm* 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
 
