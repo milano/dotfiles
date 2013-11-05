@@ -1,0 +1,8 @@
+[user]
+    name = tsukui
+    email = tsukui.akihiro@kyodo-d.jp
+[color]
+    ui = auto
+[alias]
+    br = branch
+    co = checkout
