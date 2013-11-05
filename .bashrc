@@ -28,7 +28,7 @@ alias e='emacs'
 alias j='jobs -l'
 alias g='git'
 alias v='vim'
-alias vi ='vim'
+alias vi='vim'
 alias caketestall='./app/Console/cake test app AllTests'
 
 export GIT_EDITOR="vim"
