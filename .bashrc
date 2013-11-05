@@ -10,9 +10,6 @@ fi
 function hg_branch() {
     hg branch 2> /dev/null | awk '{print " (hg:"$1")"}'
 }
-function hg_rev() {
-    hg parents --template "r{rev}\n" 2> /dev/null | awk '{print " "$1")"}'
-}
 
 if tty >/dev/null 2>&1; then
     source ~/.git-completion.bash
@@ -27,11 +24,11 @@ fi
 
 alias ll='ls -la'
 alias l='ls -la'
-alias emacs='/usr/local/bin/emacs -nw'
-alias e='/usr/local/bin/emacs -nw'
+alias e='emacs'
 alias j='jobs -l'
 alias g='git'
 alias v='vim'
+alias vi ='vim'
 alias caketestall='./app/Console/cake test app AllTests'
 
 export GIT_EDITOR="vim"
@@ -49,6 +46,6 @@ fi
 
 function prompt_screen(){
     if [ x$TERM = xscreen ]; then
-	echo -ne "\ek$(basename $(pwd))\e\\"
+        echo -ne "\ek$(basename $(pwd))\e\\"
     fi
 }

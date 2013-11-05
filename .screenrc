@@ -29,4 +29,4 @@ bind x command -c REGION
 
 #caption always "%{= gk} %-w%{=bu dr}%n %t%{-}%+w %= %{=b wm}[%Y/%m/%d %02c]"
 #shelltitle "$ |bash"
-hardstatus alwayslastline "%{= gk} %-w%{=bu dr}%n %t%{-}%+w"
+hardstatus alwayslastline "%{= ck} %-w%{=bu dr}%n %t%{-}%+w"
