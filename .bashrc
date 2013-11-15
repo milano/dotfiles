@@ -43,12 +43,12 @@ function ssh_screen(){
     screen -t $server ssh "$@"
 #    tmux new-window -n $server "ssh $@"
 }
-if [ x$TERM = xscreen ]; then
+if [ -n "$TERMCAP" ]; then
     alias ssh=ssh_screen
 fi
 
 function prompt_screen(){
-    if [ x$TERM = xscreen ]; then
+    if [ -n "$TERMCAP" ]; then
         echo -ne "\ek$(basename $(pwd))\e\\"
     fi
 }
