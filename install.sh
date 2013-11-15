@@ -12,7 +12,11 @@ ln -s git/dotfiles/.vimrc
 
 git config --global user.name milano
 git config --global user.email milano@rebecca.ac
-mkdir -p .vim/plugin
+mkdir -p .vim
+cd .vim/
+curl 'https://github.com/jlanzarotta/bufexplorer/archive/master.zip' -o bufexplorer.zip
+unzip bufexplorer.zip
+rm bufexplorer.zip
 mkdir -p .vim/bundle
 cd .vim/bundle
 git clone https://github.com/Shougo/neobundle.vim.git
