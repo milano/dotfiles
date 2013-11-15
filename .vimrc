@@ -95,11 +95,8 @@ set pastetoggle=<F4>
 "------------------------------------------------------------
 " Indentation options
 
-" タブ文字の代わりにスペース2個を使う場合の設定。
-" この場合、'tabstop'はデフォルトの8から変えない。
 set shiftwidth=4
 set softtabstop=4
-set expandtab
 set tabstop=4
 
 " オートインデント
@@ -132,7 +129,7 @@ noremap  <C-g> <esc>
 inoremap <C-g> <esc>
 cnoremap <C-g> <esc>
 
-noremap <C-l> :BufExplorer<CR>
+noremap <C-l> :BufExplorer<CR>j
 
 " インサートモードでもhjklで移動
 "inoremap <C-j> <Down>

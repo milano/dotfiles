@@ -35,6 +35,9 @@ export GIT_EDITOR="vim"
 export HGEDITOR="vim"
 export HGENCODING=utf-8
 
+export HISTIGNORE="fg*:bg*:history*"
+export HISTSIZE=10000
+
 function ssh_screen(){
     eval server=\${$#}
     screen -t $server ssh "$@"
