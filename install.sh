@@ -43,3 +43,6 @@ cd bundle
 if [ ! -e $HOME/.vim/bundle/neobundle.vim ]; then
     git clone https://github.com/Shougo/neobundle.vim.git
 fi
+if [ ! -e $HOME/.vim/bundle/mrkn256.vim ]; then
+	git clone https://github.com/mrkn/mrkn256.vim
+fi
