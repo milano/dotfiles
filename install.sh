@@ -27,7 +27,7 @@ fi
 
 cd .vim/
 if [ ! -e $HOME/.vim/plugin/bufexplorer.vim ]; then
-    curl 'https://github.com/jlanzarotta/bufexplorer/archive/master.zip' -o bufexplorer.zip
+    curl 'https://codeload.github.com/jlanzarotta/bufexplorer/zip/master' -o bufexplorer.zip
     unzip bufexplorer.zip
     rm bufexplorer.zip
 fi
