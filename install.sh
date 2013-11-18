@@ -24,12 +24,17 @@ git config --global user.email milano@rebecca.ac
 if [ ! -e $HOME/.vim ]; then
     mkdir -p .vim
 fi
+if [ ! -e $HOME/.vim/plugin ]; then
+	mkdir -p .vim/plugin
+fi
 
 cd .vim/
 if [ ! -e $HOME/.vim/plugin/bufexplorer.vim ]; then
     curl 'https://codeload.github.com/jlanzarotta/bufexplorer/zip/master' -o bufexplorer.zip
     unzip bufexplorer.zip
+	mv bufexplorer-master/plugin/bufexplorer.vim $HOME/.vim/plugin/bufexplorer.vim
     rm bufexplorer.zip
+	rm -rf bufexplorer-master
 fi
 if [ ! -e $HOME/.vim/bundle ]; then
     mkdir -p bundle
