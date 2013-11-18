@@ -17,6 +17,6 @@ cd .vim/
 curl 'https://github.com/jlanzarotta/bufexplorer/archive/master.zip' -o bufexplorer.zip
 unzip bufexplorer.zip
 rm bufexplorer.zip
-mkdir -p .vim/bundle
-cd .vim/bundle
+mkdir -p bundle
+cd bundle
 git clone https://github.com/Shougo/neobundle.vim.git
