@@ -7,15 +7,11 @@ fi
 
 # User specific aliases and functions
 
-function hg_branch() {
-    hg branch 2> /dev/null | awk '{print " (hg:"$1")"}'
-}
-
 if tty >/dev/null 2>&1; then
     source ~/.git-completion.bash
     source ~/.git-prompt.sh
     source ~/.hg-completion.bash
-    PS1="[\[\033[0;35m\]\u\[\033[0m\]@\[\033[0;36m\]\h\[\033[0m\] \[\033[0;33m\]\W\$(__git_ps1)\$(hg_branch)\[\033[0m\]]\[\033[0;31m\]$\[\033[0m\] "
+    PS1="[\[\033[0;35m\]\u\[\033[0m\]@\[\033[0;36m\]\h\[\033[0m\] \[\033[0;33m\]\W\$(__git_ps1)\[\033[0m\]]\[\033[0;31m\]$\[\033[0m\] "
     export PROMPT_COMMAND='prompt_screen'
     stty stop undef
 else
