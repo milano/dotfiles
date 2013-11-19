@@ -5,6 +5,8 @@ rm ~/.bash_profile
 ln -s git/dotfiles/.bash_profile
 rm ~/.bashrc
 ln -s git/dotfiles/.bashrc
+rm ~/.gitconfig
+ln -s git/dotfiles/.gitconfig
 rm ~/.git-completion.bash
 ln -s git/dotfiles/.git-completion.bash
 rm ~/.git-prompt.sh
@@ -17,9 +19,6 @@ rm ~/.screenrc
 ln -s git/dotfiles/.screenrc
 rm ~/.vimrc
 ln -s git/dotfiles/.vimrc
-
-git config --global user.name milano
-git config --global user.email milano@rebecca.ac
 
 if [ ! -e $HOME/.vim ]; then
     mkdir -p .vim
