@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ruleset name="Custom Standard">
+<description>My custom cakePHP coding standard</description>
+
+<rule ref="CakePHP">
+    <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.TabsUsed" />
+    <exclude name="CakePHP.WhiteSpace.ScopeIndent.DocCommentStartColumn" />
+    <exclude name="Squiz.WhiteSpace.LanguageConstructSpacing.Incorrect" />
+    <exclude name="CakePHP.Commenting.FunctionCommentThrowTag" />
+</rule>
+</ruleset>

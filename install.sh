@@ -22,6 +22,7 @@ ln -s git/dotfiles/.vimrc
 
 if [ ! -e $HOME/.vim ]; then
     mkdir -p .vim
+	ln -s git/dotfiles/phpcs-rule.xml .vim/phpcs-rule.xml
 fi
 if [ ! -e $HOME/.vim/plugin ]; then
 	mkdir -p .vim/plugin
