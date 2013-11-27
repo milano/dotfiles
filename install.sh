@@ -1,5 +1,7 @@
 #!/bin/sh
 
+mv diff-highlight /usr/local/bin/diff-highlight
+
 cd $HOME
 rm ~/.bash_profile
 ln -s git/dotfiles/.bash_profile
@@ -21,7 +23,7 @@ rm ~/.vimrc
 ln -s git/dotfiles/.vimrc
 
 if [ ! -e $HOME/.vim ]; then
-    mkdir -p .vim
+	mkdir -p .vim
 fi
 if [ ! -e $HOME/.vim/plugin ]; then
 	mkdir -p .vim/plugin
@@ -30,18 +32,18 @@ fi
 cd .vim/
 ln -s ../git/dotfiles/phpcs-rule.xml
 if [ ! -e $HOME/.vim/plugin/bufexplorer.vim ]; then
-    curl 'https://codeload.github.com/jlanzarotta/bufexplorer/zip/master' -o bufexplorer.zip
-    unzip bufexplorer.zip
+	curl 'https://codeload.github.com/jlanzarotta/bufexplorer/zip/master' -o bufexplorer.zip
+	unzip bufexplorer.zip
 	mv bufexplorer-master/plugin/bufexplorer.vim $HOME/.vim/plugin/bufexplorer.vim
-    rm bufexplorer.zip
+	rm bufexplorer.zip
 	rm -rf bufexplorer-master
 fi
 if [ ! -e $HOME/.vim/bundle ]; then
-    mkdir -p bundle
+	mkdir -p bundle
 fi
 cd bundle
 if [ ! -e $HOME/.vim/bundle/neobundle.vim ]; then
-    git clone https://github.com/Shougo/neobundle.vim.git
+	git clone https://github.com/Shougo/neobundle.vim.git
 fi
 if [ ! -e $HOME/.vim/bundle/mrkn256.vim ]; then
 	git clone https://github.com/mrkn/mrkn256.vim
