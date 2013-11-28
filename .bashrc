@@ -39,12 +39,14 @@ function ssh_screen(){
     screen -t $server ssh "$@"
 #    tmux new-window -n $server "ssh $@"
 }
-if [ -n "$TERMCAP" ]; then
+if [ "$STY" ]; then
     alias ssh=ssh_screen
 fi
 
 function prompt_screen(){
-    if [ -n "$TERMCAP" ]; then
-        echo -ne "\ek$(basename $(pwd))\e\\"
+    if [ "$STY" ]; then
+        echo -ne "\033k$(basename $(pwd))\033\\"
+	else
+        echo -ne "\033]0;${HOSTNAME%%.*}:${PWD/$HOME/~}\007"
     fi
 }
