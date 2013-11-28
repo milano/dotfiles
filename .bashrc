@@ -39,12 +39,39 @@ function ssh_screen(){
     screen -t $server ssh "$@"
 #    tmux new-window -n $server "ssh $@"
 }
-if [ -n "$TERMCAP" ]; then
+if [ "$STY" ]; then
     alias ssh=ssh_screen
 fi
 
 function prompt_screen(){
-    if [ -n "$TERMCAP" ]; then
-        echo -ne "\ek$(basename $(pwd))\e\\"
+    if [ "$STY" ]; then
+        #echo -ne "\ek$(basename $(pwd))\e\\"
+        echo -ne "\033k$(pwd_screen)\033\\"
     fi
+}
+
+# http://yanor.net/wiki/?screen%2Fウィンドウタイトルに今いるディレクトリを表示
+function pwd_screen() {
+  local _ifs=IFS
+  local buf=''
+  local dir=()
+  local n=0
+  local idx=0
+  IFS=/
+  for i in $PWD; do
+    n=${#dir[@]}
+    dir[$n]=$i
+  done
+  n=${#dir[@]}
+  for i in 3 2 1; do
+    idx=$((n-$i))
+    if [ "$idx" -gt 0 ]; then
+      buf=$buf/${dir[$idx]}
+    fi
+  done
+  if [ "$n" -gt 2 ]; then
+    buf=${buf#/}
+  fi
+  IFS=$_ifs
+  echo -ne $buf
 }
