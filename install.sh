@@ -1,6 +1,7 @@
 #!/bin/sh
 
 mv diff-highlight /usr/local/bin/diff-highlight
+chmod +x /usr/local/bin/diff-highlight
 
 cd $HOME
 rm ~/.bash_profile

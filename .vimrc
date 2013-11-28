@@ -17,7 +17,6 @@
 set nocompatible
 
 " Enable syntax highlighting
-" 色づけをオン
 syntax on
 
 
@@ -41,10 +40,6 @@ set incsearch
 
 " コマンドラインの履歴を増やす
 set history=1000
-
-" 歴史的にモードラインはセキュリティ上の脆弱性になっていたので、
-" オフにして代わりに上記のsecuremodelinesスクリプトを使うとよい。
-" set nomodeline
 
 "------------------------------------------------------------
 " Usability options
@@ -79,6 +74,8 @@ set t_vb=
 
 " 全モードでマウスを有効化
 set mouse=a
+set guioptions+=a
+set ttymouse=xterm2
 
 " コマンドラインの高さを2行に
 set cmdheight=2
@@ -91,6 +88,15 @@ set notimeout ttimeout ttimeoutlen=200
 
 " <F4>キーで'paste'と'nopaste'を切り替える
 set pastetoggle=<F4>
+
+" 他で書き換えられたら自動で読み直す
+set autoread
+
+" スワップファイル作らない
+set noswapfile
+
+" カーソルを行頭、行末で止まらないようにする
+set whichwrap=b,s,h,l,<,>,[,]
 
 "------------------------------------------------------------
 " Indentation options
@@ -125,6 +131,7 @@ cnoremap %% <C-R>=expand('%:p:h').'/'<cr>
 map <F2> <esc>:bp<cr>
 map <F3> <esc>:bn<cr>
 
+" Ctrl+Gでいろいろキャンセル
 noremap  <C-g> <esc>
 inoremap <C-g> <esc>
 cnoremap <C-g> <esc>
