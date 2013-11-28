@@ -74,8 +74,6 @@ set t_vb=
 
 " 全モードでマウスを有効化
 set mouse=a
-set guioptions+=a
-set ttymouse=xterm2
 
 " コマンドラインの高さを2行に
 set cmdheight=2
@@ -191,11 +189,14 @@ filetype plugin indent on
 "------------------------------------------------------------
 " Color
 
+" 256色モードにする
+set t_Co=256
+
 " カーソルに下線を引く
 set cursorline
 
 " カラースキーマ設定
-colorscheme mrkn256
+colorscheme koehler
 
 "------------------------------------------------------------
 " airline
