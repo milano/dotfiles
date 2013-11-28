@@ -23,6 +23,8 @@ ln -s git/dotfiles/.screenrc
 rm ~/.vimrc
 ln -s git/dotfiles/.vimrc
 
+touch .bashrc.local
+
 if [ ! -e $HOME/.vim ]; then
 	mkdir -p .vim
 fi

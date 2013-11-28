@@ -34,6 +34,8 @@ export HGENCODING=utf-8
 export HISTIGNORE="fg*:bg*:history*"
 export HISTSIZE=10000
 
+source ~/.bashrc.local
+
 function ssh_screen(){
     eval server=\${$#}
     screen -t $server ssh "$@"
