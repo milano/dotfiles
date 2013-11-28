@@ -1,6 +1,8 @@
 #!/bin/sh
 
-mv diff-highlight /usr/local/bin/diff-highlight
+$OLD_PWD=`pwd`
+
+cp $OLD_PWD/diff-highlight /usr/local/bin/diff-highlight
 chmod +x /usr/local/bin/diff-highlight
 
 cd $HOME
@@ -31,8 +33,13 @@ fi
 if [ ! -e $HOME/.vim/plugin ]; then
 	mkdir -p .vim/plugin
 fi
+if [ ! -e $HOME/.vim/dictionary ]; then
+	mkdir -p .vim/dictionary
+fi
 
-cd .vim/
+cp $OLD_PWD/php.dict $HOME/.vim/dictionary/php.dict
+
+cd $HOME/.vim/
 ln -s ../git/dotfiles/phpcs-rule.xml
 if [ ! -e $HOME/.vim/plugin/bufexplorer.vim ]; then
 	curl 'https://codeload.github.com/jlanzarotta/bufexplorer/zip/master' -o bufexplorer.zip
