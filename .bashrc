@@ -18,14 +18,29 @@ else
     PS1="$ "
 fi
 
-alias ll='ls -la'
 alias l='ls -la'
 alias e='emacs'
 alias j='jobs -l'
 alias g='git'
 alias v='vim'
 alias vi='vim'
+alias emacs='/usr/local/bin/emacs'
 alias caketestall='./app/Console/cake test app AllTests'
+
+case "${OSTYPE}" in
+darwin*)
+    alias ls='ls -G'
+    alias ll='ls -laG'
+    ;;
+linux*)
+    alias ls='ls -color'
+    alias ll='ls -la --color'
+    ;;
+esac
+
+if [ "$STY" ]; then
+    alias ssh=ssh_screen
+fi
 
 export GIT_EDITOR="vim"
 export HGEDITOR="vim"
@@ -36,14 +51,12 @@ export HISTSIZE=10000
 
 source ~/.bashrc.local
 
+# Functions
 function ssh_screen(){
     eval server=\${$#}
     screen -t $server ssh "$@"
 #    tmux new-window -n $server "ssh $@"
 }
-if [ "$STY" ]; then
-    alias ssh=ssh_screen
-fi
 
 function prompt_screen(){
     if [ "$STY" ]; then

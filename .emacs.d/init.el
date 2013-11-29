@@ -21,11 +21,16 @@
 ;;
 
 ;; Theme
-(load-theme 'misterioso t)
+(add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0")
+(require 'color-theme)
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-initialize)
+     (color-theme-dark-laptop)))
 
 ;; menu disabled
 (menu-bar-mode nil)
-(tool-bar-mode nil)
+;(tool-bar-mode nil)
 
 ;; スタートアップメッセージを表示しない
 (setq inhibit-startup-message t)
