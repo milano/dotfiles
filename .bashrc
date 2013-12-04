@@ -25,6 +25,7 @@ alias g='git'
 alias v='vim'
 alias vi='vim'
 alias emacs='/usr/local/bin/emacs'
+alias sublime='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias caketestall='./app/Console/cake test app AllTests'
 
 case "${OSTYPE}" in
