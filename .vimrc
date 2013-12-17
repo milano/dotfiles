@@ -118,8 +118,8 @@ set smartindent
 " Yの動作をDやCと同じにする
 map Y y$
 
-" <C-L>で検索後の強調表示を解除する
-nnoremap <C-L> :nohl<CR><C-L>
+" <C-K>で検索後の強調表示を解除する
+nnoremap <C-K> :nohl<CR>
 
 " コマンドラインモードで %% を入力すると現在編集中の
 " ファイルのフォルダのパスが展開されるようにする
