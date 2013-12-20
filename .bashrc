@@ -18,7 +18,7 @@ else
     PS1="$ "
 fi
 
-alias l='ls -la'
+alias l='ll'
 alias e='emacs'
 alias j='jobs -l'
 alias g='git'
@@ -31,11 +31,11 @@ alias caketestall='./app/Console/cake test app AllTests'
 case "${OSTYPE}" in
 darwin*)
     alias ls='ls -G'
-    alias ll='ls -laG'
+    alias ll='\ls -laG'
     ;;
 linux*)
     alias ls='ls -color'
-    alias ll='ls -la --color'
+    alias ll='\ls -la --color'
     ;;
 esac
 
