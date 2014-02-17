@@ -7,6 +7,6 @@
     br = branch
     co = checkout
 [push]
-    default = current
+    default = simple
 [include]
 	path = .gitconfig.local
