@@ -6,9 +6,7 @@
 [alias]
     br = branch
     co = checkout
-[merge]
-    ff = false
 [push]
-    default = tracking
+    default = current
 [include]
 	path = .gitconfig.local

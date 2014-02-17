@@ -7,5 +7,6 @@
     <exclude name="CakePHP.WhiteSpace.ScopeIndent.DocCommentStartColumn" />
     <exclude name="Squiz.WhiteSpace.LanguageConstructSpacing.Incorrect" />
     <exclude name="CakePHP.Commenting.FunctionCommentThrowTag" />
+    <exclude name="CakePHP.WhiteSpace.TabAndSpace" />
 </rule>
 </ruleset>
