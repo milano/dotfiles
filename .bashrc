@@ -19,12 +19,10 @@ else
 fi
 
 alias l='ll'
-alias e='emacs'
 alias j='jobs -l'
 alias g='git'
 alias v='vim'
 alias vi='vim'
-alias emacs='/usr/local/bin/emacs'
 alias sublime='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias caketestall='./app/Console/cake test app AllTests'
 
@@ -34,7 +32,7 @@ darwin*)
     alias ll='\ls -laG'
     ;;
 linux*)
-    alias ls='ls -color'
+    alias ls='ls --color'
     alias ll='\ls -la --color'
     ;;
 esac
