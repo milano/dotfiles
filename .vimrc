@@ -161,7 +161,7 @@ endif
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vimfiler'
@@ -250,6 +250,14 @@ highlight PMenuSbar ctermbg=4
 imap <C-k>     <Plug>(neocomplcache_snippets_expand)
 smap <C-k>     <Plug>(neocomplcache_snippets_expand)
 inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplcache#smart_close_popup() . "\<CR>"
+    " For no inserting <CR> key.
+	"   "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+endfunction
 
 "tabで補完候補の選択を行う
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
