@@ -2,8 +2,8 @@
 
 OLD_PWD=`pwd`
 
-cp $OLD_PWD/diff-highlight /usr/local/bin/diff-highlight
-chmod +x /usr/local/bin/diff-highlight
+sudo cp $OLD_PWD/diff-highlight /usr/local/bin/diff-highlight
+sudo chmod +x /usr/local/bin/diff-highlight
 
 cd $HOME
 if [ -e ~/.bash_profile ]; then
