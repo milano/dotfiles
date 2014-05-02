@@ -10,3 +10,5 @@
     default = nothing
 [include]
 	path = .gitconfig.local
+[help]
+	autocorrect = 1
