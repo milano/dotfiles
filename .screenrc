@@ -18,7 +18,6 @@ bind x
 bind ^x
 bind h prev
 bind l next
-bind ^] next
 bind w windowlist
 bind -c REGION 2 split
 bind -c REGION 1 only

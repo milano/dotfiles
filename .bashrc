@@ -51,6 +51,10 @@ export HISTSIZE=10000
 source ~/.bashrc.local
 
 # Functions
+function growl(){
+	echo -e $'\e]9;'${1}'\007'; return;
+}
+
 function ssh_screen(){
     eval server=\${$#}
     screen -t $server ssh "$@"
