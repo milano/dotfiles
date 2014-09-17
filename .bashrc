@@ -48,6 +48,9 @@ export HGENCODING=utf-8
 export HISTIGNORE="fg*:bg*:history*"
 export HISTSIZE=10000
 
+export GOPATH=~/go/packages
+export PATH=$PATH:$GOROOT/bin
+
 source ~/.bashrc.local
 
 # Functions

@@ -163,14 +163,17 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'fatih/vim-go'
 
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'croaker/mustang-vim'
@@ -185,6 +188,8 @@ NeoBundle 'tomasr/molokai'
 
 " ファイル名と内容によってファイルタイプを判別し、ファイルタイププラグインを有効にする
 filetype plugin indent on
+
+NeoBundleCheck
 
 "------------------------------------------------------------
 " Color
@@ -319,3 +324,23 @@ autocmd BufNewFile,BufRead * match ZenkakuSpace /　/
 autocmd QuickFixCmdPost *grep* cwindow
 
 "-----------------------------------------------------------
+" Unite
+
+let g:unite_enable_start_insert = 0
+let g:unite_source_history_yank_enable = 1
+let g:unite_source_file_mru_limit = 200
+nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
+nnoremap <silent> ,uo :<C-u>Unite outline<CR>
+
+"-----------------------------------------------------------
+" golang
+
+let g:go_play_open_browser = 0
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave = 0
+
