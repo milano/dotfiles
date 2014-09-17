@@ -19,7 +19,6 @@ set nocompatible
 " Enable syntax highlighting
 syntax on
 
-
 "------------------------------------------------------------
 " Must have options
 
@@ -94,7 +93,7 @@ set autoread
 set noswapfile
 
 " カーソルを行頭、行末で止まらないようにする
-set whichwrap=b,s,h,l,<,>,[,]
+"set whichwrap=b,s,h,l,<,>,[,]
 
 "------------------------------------------------------------
 " Indentation options
@@ -134,13 +133,8 @@ noremap  <C-g> <esc>
 inoremap <C-g> <esc>
 cnoremap <C-g> <esc>
 
-noremap <C-l> :BufExplorer<CR>j
-
-" インサートモードでもhjklで移動
-"inoremap <C-j> <Down>
-"inoremap <C-k> <Up>
-"inoremap <C-h> <Left>
-"inoremap <C-l> <Right>
+"noremap <C-l> :BufExplorer<CR>j
+noremap <C-l> :Unite buffer<CR>
 
 " 検索結果を画面中央にする
 nmap n nzz
@@ -161,6 +155,7 @@ endif
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
@@ -206,13 +201,16 @@ colorscheme koehler
 "------------------------------------------------------------
 " airline
 
-"let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 "let g:airline_left_sep = '▶'
 "let g:airline_right_sep = '◀'
+let g:unite_force_overwrite_statusline = 0
+let g:vimfiler_force_overwrite_statusline = 0
 
 "------------------------------------------------------------
 " neocomplcache
 " http://www.karakaram.com/neocomplcache
+" http://qiita.com/hide/items/229ff9460e75426a2d07
 
 "補完ウィンドウの設定
 set completeopt=menuone
@@ -240,6 +238,11 @@ let g:neocomplcache_enable_camel_case_completion = 1
 "m_sと入力するとm*_sと解釈され、mb_substr等にマッチする。
 let g:neocomplcache_enable_underbar_completion = 1
 
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : ''
+    \ }
+
 " http://vim-users.jp/2010/10/hack177/
 
 autocmd BufRead *.php\|*.ctp\|*.tpl :set dictionary=~/.vim/dictionary/php.dict filetype=php
@@ -247,13 +250,13 @@ let g:neocomplcache_caching_percent_in_statusline = 1
 let g:neocomplcache_enable_skip_completion = 1
 let g:neocomplcache_skip_input_time = '0.5'
 
-highlight Pmenu ctermbg=196
-highlight PmenuSel ctermbg=1
-highlight PMenuSbar ctermbg=4
+"highlight Pmenu ctermbg=196
+"highlight PmenuSel ctermbg=1
+"highlight PMenuSbar ctermbg=4
 
 " Plugin key-mappings.
-imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
 inoremap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
@@ -265,8 +268,8 @@ function! s:my_cr_function()
 endfunction
 
 "tabで補完候補の選択を行う
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<S-TAB>"
+inoremap <expr><TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<Up>"  : "\<S-TAB>"
 "C-h, BSで補完ウィンドウを確実に閉じる
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>  neocomplcache#smart_close_popup()."\<C-h>"
@@ -275,7 +278,7 @@ inoremap <expr><C-y> neocomplcache#close_popup()
 "C-eで補完のキャンセルし、ウィンドウを閉じる。ポップアップが開いていないときはEndキー
 inoremap <expr><C-e> pumvisible() ? neocomplcache#cancel_popup() : "\<End>"
 "改行で補完ウィンドウを閉じる
-inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
+inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 "vim標準のキーワード補完を置き換える
 "inoremap <expr><C-n> neocomplcache#manual_keyword_complete()
 "C-pで上キー

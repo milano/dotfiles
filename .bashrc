@@ -49,7 +49,7 @@ export HISTIGNORE="fg*:bg*:history*"
 export HISTSIZE=10000
 
 export GOPATH=~/go/packages
-export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 source ~/.bashrc.local
 
