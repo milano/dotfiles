@@ -40,6 +40,9 @@ set incsearch
 " コマンドラインの履歴を増やす
 set history=1000
 
+"Unicodeで行末が変になる問題を解決
+set ambiwidth=double
+
 "------------------------------------------------------------
 " Usability options
 
@@ -95,6 +98,11 @@ set noswapfile
 " カーソルを行頭、行末で止まらないようにする
 "set whichwrap=b,s,h,l,<,>,[,]
 
+" newrwをツリービューで起動
+let g:netrw_liststyle = 3
+
+set grepprg=grep\ -nH
+
 "------------------------------------------------------------
 " Indentation options
 
@@ -116,9 +124,6 @@ set smartindent
 
 " Yの動作をDやCと同じにする
 map Y y$
-
-" <C-K>で検索後の強調表示を解除する
-nnoremap <C-K> :nohl<CR>
 
 " コマンドラインモードで %% を入力すると現在編集中の
 " ファイルのフォルダのパスが展開されるようにする
@@ -167,6 +172,7 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'fatih/vim-go'
 
 NeoBundle 'altercation/vim-colors-solarized'
@@ -331,12 +337,37 @@ autocmd QuickFixCmdPost *grep* cwindow
 let g:unite_enable_start_insert = 0
 let g:unite_source_history_yank_enable = 1
 let g:unite_source_file_mru_limit = 200
+" 大文字小文字を区別しない
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
 nnoremap <silent> ,uo :<C-u>Unite outline<CR>
+
+" grep検索
+nnoremap <silent> ,ug  :<C-u>Unite grep:. -buffer-name=search-buffer -auto-preview<CR>
+
+" カーソル位置の単語をgrep検索
+nnoremap <silent> ,ucg :<C-u>Unite grep:. -buffer-name=search-buffer -auto-preview<CR><C-R><C-W>
+
+" grep検索結果の再呼出
+nnoremap <silent> ,ur  :<C-u>UniteResume search-buffer<CR>
+
+"-----------------------------------------------------------
+" fugitive
+
+noremap <silent> ,gs :<C-u>Gstatus<CR>
+noremap <silent> ,ga :<C-u>Gwrite<CR>
+noremap <silent> ,gr :<C-u>Gread<CR>
+noremap <silent> ,gc :<C-u>Gcommit<CR>
+noremap <silent> ,gb :<C-u>Gblame<CR>
+noremap <silent> ,gd :<C-u>Gdiff<CR>
+noremap <silent> ,gp :<C-u>Gpull<CR>
+noremap <silent> ,gl :<C-u>Glog<CR>
 
 "-----------------------------------------------------------
 " golang

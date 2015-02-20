@@ -41,6 +41,9 @@ if [ "$STY" ]; then
     alias ssh=ssh_screen
 fi
 
+export GOPATH=~/go/packages
+export PATH=/usr/local/git/bin:$PATH:$GOROOT/bin:$GOPATH/bin
+
 export GIT_EDITOR="vim"
 export HGEDITOR="vim"
 export HGENCODING=utf-8
@@ -48,8 +51,7 @@ export HGENCODING=utf-8
 export HISTIGNORE="fg*:bg*:history*"
 export HISTSIZE=10000
 
-export GOPATH=~/go/packages
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export COPYFILE_DISABLE=1
 
 source ~/.bashrc.local
 
