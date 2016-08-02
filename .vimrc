@@ -138,8 +138,7 @@ noremap  <C-g> <esc>
 inoremap <C-g> <esc>
 cnoremap <C-g> <esc>
 
-"noremap <C-l> :BufExplorer<CR>j
-noremap <C-l> :Unite buffer<CR>
+noremap <C-l> :BufExplorer<CR>j
 
 " 検索結果を画面中央にする
 nmap n nzz
@@ -157,22 +156,14 @@ if has('vim_starting')
   call neobundle#rc(expand('~/.vim/bundle/'))
 endif
 
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-repeat'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimproc'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'tpope/vim-fugitive'
+
 NeoBundle 'fatih/vim-go'
 
 NeoBundle 'altercation/vim-colors-solarized'
@@ -207,9 +198,8 @@ colorscheme koehler
 " airline
 
 let g:airline#extensions#tabline#enabled = 1
-"let g:airline_left_sep = '▶'
-"let g:airline_right_sep = '◀'
-let g:unite_force_overwrite_statusline = 0
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
 let g:vimfiler_force_overwrite_statusline = 0
 
 "------------------------------------------------------------
@@ -330,44 +320,6 @@ autocmd BufNewFile,BufRead * match ZenkakuSpace /　/
 
 " grepは自動的にquickfix-windowを開く
 autocmd QuickFixCmdPost *grep* cwindow
-
-"-----------------------------------------------------------
-" Unite
-
-let g:unite_enable_start_insert = 0
-let g:unite_source_history_yank_enable = 1
-let g:unite_source_file_mru_limit = 200
-" 大文字小文字を区別しない
-let g:unite_enable_ignore_case = 1
-let g:unite_enable_smart_case = 1
-
-nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
-nnoremap <silent> ,uo :<C-u>Unite outline<CR>
-
-" grep検索
-nnoremap <silent> ,ug  :<C-u>Unite grep:. -buffer-name=search-buffer -auto-preview<CR>
-
-" カーソル位置の単語をgrep検索
-nnoremap <silent> ,ucg :<C-u>Unite grep:. -buffer-name=search-buffer -auto-preview<CR><C-R><C-W>
-
-" grep検索結果の再呼出
-nnoremap <silent> ,ur  :<C-u>UniteResume search-buffer<CR>
-
-"-----------------------------------------------------------
-" fugitive
-
-noremap <silent> ,gs :<C-u>Gstatus<CR>
-noremap <silent> ,ga :<C-u>Gwrite<CR>
-noremap <silent> ,gr :<C-u>Gread<CR>
-noremap <silent> ,gc :<C-u>Gcommit<CR>
-noremap <silent> ,gb :<C-u>Gblame<CR>
-noremap <silent> ,gd :<C-u>Gdiff<CR>
-noremap <silent> ,gp :<C-u>Gpull<CR>
-noremap <silent> ,gl :<C-u>Glog<CR>
 
 "-----------------------------------------------------------
 " golang
