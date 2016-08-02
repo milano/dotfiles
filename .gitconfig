@@ -1,19 +1,30 @@
 [user]
-    name = tsukui
-    email = tsukui.akihiro@kyodo-d.jp
+	name = tsukui
+	email = tsukui.akihiro@kyodo-d.jp
 [color]
-    ui = auto
+	ui = auto
 [alias]
-    br = branch
-    co = checkout
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-    lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	co     = checkout
+	st     = status
+	cancel = reset --soft HEAD^
+	purr   = pull --rebase
+	br     = branch
+	bra    = branch -a
+	brv    = branch -vv
+	brm    = branch --merged
+	brn    = branch --no-merged
+	ls     = log --decorate --oneline --stat
+	ld     = log -p
+	lg     = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	lga    = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	dw     = diff --color-words
+	ds     = diff --staged
 [push]
-    default = nothing
+	default = nothing
 [include]
-    path = .gitconfig.local
+	path = .gitconfig.local
 [help]
-    autocorrect = 1
+	autocorrect = 1
 [core]
-    autoCRLF = false
-    excludesfile = /Users/tsukui/.gitignore_global
+	autoCRLF = false
+	excludesfile = /Users/tsukui/.gitignore_global
