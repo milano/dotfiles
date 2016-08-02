@@ -1,24 +1,37 @@
+# Escape KeyはCtrl-t
+escape ^tt
+# 自動デタッチ
 autodetach on
+# 起動メッセージoff
+startup_message off
 bell_msg "^G"
+# 文字コード
 defkanji utf-8
 defencoding utf-8
 encoding utf-8 utf-8
+# スクロールバッファ10000行
 defscrollback 10000
-escape ^]v
-startup_message off
+# エラー時の端末画面の点滅off
 vbell off
+# 別画面サポート（viやlessを閉じた時に表示内容が残らないように）
 altscreen on
-
+# 背景色消去
 defbce on
+# 256色表示設定
 term xterm-256color
+# マウスホイールサポート
 termcapinfo xterm* ti@:te@
 #termcapinfo xterm* 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
 
-bind x
-bind ^x
+# Ctrl-nでウィンドウ番号変更
+bind n colon 'number '
 bind h prev
 bind l next
 bind w windowlist
+
+# Ctrl-t, x, 2でウィンドウ分割P
+bind x
+bind ^x
 bind -c REGION 2 split
 bind -c REGION 1 only
 bind -c REGION 0 remove
@@ -26,6 +39,25 @@ bind -c REGION o focus
 bind -c REGION \^ resize
 bind x command -c REGION
 
+# Ctrl-t + 数字だけだと9までしか跳べないから、Ctrl-t, -, 数字で跳べるようにする
+bind -c JUMP 0 select 10
+bind -c JUMP 1 select 11
+bind -c JUMP 2 select 12
+bind -c JUMP 3 select 13
+bind -c JUMP 4 select 14
+bind -c JUMP 5 select 15
+bind -c JUMP 6 select 16
+bind -c JUMP 7 select 17
+bind -c JUMP 8 select 18
+bind -c JUMP 9 select 19
+bind - command -c JUMP
+
 #caption always "%{= gk} %-w%{=bu dr}%n %t%{-}%+w %= %{=b wm}[%Y/%m/%d %02c]"
 #shelltitle "$ |bash"
-hardstatus alwayslastline "%{= ck} %-w%{=bu dr}%n %t%{-}%+w"
+#hardstatus alwayslastline "%{= ck} %-w%{=bu dr}%n %t%{-}%+w"
+hardstatus alwayslastline '%{= kw}%{= .y}%H %L=%{= .b}%-w%46>%{= .r}%n %t*%{= .b}%+w%-10=%{= .y}[%02c:%s]'
+
+# screen動作中のreloadは
+# Ctrl-t, q
+# で可能
+bind q eval 'source $HOME/.screenrc' 'echo "reload!"'
