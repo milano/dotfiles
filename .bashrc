@@ -10,7 +10,6 @@ fi
 if tty >/dev/null 2>&1; then
     source ~/.git-completion.bash
     source ~/.git-prompt.sh
-    source ~/.hg-completion.bash
     PS1="[\[\033[0;35m\]\u\[\033[0m\]@\[\033[0;36m\]\h\[\033[0m\] \[\033[0;33m\]\W\$(__git_ps1)\[\033[0m\]]\[\033[0;31m\]$\[\033[0m\] "
     export PROMPT_COMMAND='prompt_screen'
     stty stop undef
@@ -23,8 +22,6 @@ alias j='jobs -l'
 alias g='git'
 alias v='vim'
 alias vi='vim'
-alias sublime='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
-alias caketestall='./app/Console/cake test app AllTests'
 
 case "${OSTYPE}" in
 darwin*)
@@ -45,8 +42,6 @@ export GOPATH=~/go/packages
 export PATH=/usr/local/git/bin:$PATH:$GOROOT/bin:$GOPATH/bin
 
 export GIT_EDITOR="vim"
-export HGEDITOR="vim"
-export HGENCODING=utf-8
 
 export HISTIGNORE="fg*:bg*:history*"
 export HISTSIZE=10000
@@ -56,10 +51,6 @@ export COPYFILE_DISABLE=1
 source ~/.bashrc.local
 
 # Functions
-function growl(){
-	echo -e $'\e]9;'${1}'\007'; return;
-}
-
 function ssh_screen(){
     eval server=\${$#}
     screen -t $server ssh "$@"

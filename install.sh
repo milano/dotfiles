@@ -26,10 +26,6 @@ if [ -e ~/.git-prompt.sh ]; then
     rm ~/.git-prompt.sh
 fi
 ln -s git/dotfiles/.git-prompt.sh
-if [ -e ~/.hg-completion.bash ]; then
-    rm ~/.hg-completion.bash
-fi
-ln -s git/dotfiles/.hg-completion.bash
 if [ -e ~/.inputrc ]; then
     rm ~/.inputrc
 fi
