@@ -7,7 +7,7 @@
 	co     = checkout
 	st     = status
 	cancel = reset --soft HEAD^
-	purr   = pull --rebase
+	pullr  = pull --rebase
 	br     = branch
 	bra    = branch -a
 	brv    = branch -vv
