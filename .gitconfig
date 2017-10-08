@@ -6,7 +6,7 @@
 [alias]
 	co     = checkout
 	st     = status
-	cancel = reset --soft HEAD^
+	cancel = reset --hard HEAD^
 	pullr  = pull --rebase
 	br     = branch
 	bra    = branch -a
@@ -20,7 +20,7 @@
 	dw     = diff --color-words
 	ds     = diff --staged
 [push]
-	default = nothing
+	default = simple
 [include]
 	path = .gitconfig.local
 [help]
